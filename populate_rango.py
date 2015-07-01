@@ -1,5 +1,4 @@
 import os
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.settings')
 
 import django
@@ -56,11 +55,13 @@ def populate():
 
 def add_cat(name, views=0, likes=0):
     c = Category.objects.get_or_create(name=name, views=views, likes=likes)[0]
+    c.save()
     return c
 
 
 def add_page(cat, title, url, views=0):
     p = Page.objects.get_or_create(category=cat, title=title, url=url, views=views)[0]
+    p.save()
     return p
 
 if __name__ == '__main__':
