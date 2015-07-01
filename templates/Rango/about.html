@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Rango says here is the about page!</h1>
+	<p>Rango wants a picture of Django uploaded from the static media files. now!</p><br />
+	<img src="{% static "images/djangorango.jpeg"  alt="Picture of Django" %}">
+	<p>he also wants a alterntive bold dictionary inputs in bold starting here: <strong>{{ twany }}</strong></p>
+
+</body>
+</html>
