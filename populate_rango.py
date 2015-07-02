@@ -64,6 +64,7 @@ def add_page(cat, title, url, views=0):
     p.save()
     return p
 
+# I understand what this does, but don't understand the syntax
 if __name__ == '__main__':
     print "Starging Rango population script.... "
     populate()
