@@ -66,7 +66,7 @@ def index(request):
     context_dict = {'categories': category_list, 'pages': page_list}
 
     visits = request.session.get('visits')
-    
+
     if not visits:
         visits = 1
     reset_last_visit_time = False
@@ -117,6 +117,10 @@ def category(request, category_name_slug):
 
         # pass the category name slug
         context_dict['category_name_slug'] = category.slug
+
+        # save categor view count in category model table
+        category.views = category.views + 1
+        category.save()
 
     except Category.DoesNotExist:
         # handle exception when there is no match of the category slug
