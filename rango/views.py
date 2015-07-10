@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
@@ -332,22 +332,20 @@ def search(request, urlquery=None):
     return render(request, 'rango/search.html', {'result_list': result_list})
 
 
-def track_url(request, page_id):
-    pass
+def track_url(request):
 
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            page = Page.objects.get(id=page_id)
 
+            # update pageviews
+            page.views = page.views + 1
+            page.save()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            # redirect to page url
+            return HttpResponseRedirect(page.url)
+        else:
+            return HttpResponse("Url not found")
+    else:
+        return HttpResponseNotFound()
