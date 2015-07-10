@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^restricted/', views.restricted, name='restricted'),
     # url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^search/$', views.search, name='search'),
+    url(r'^search/(?P<urlquery>[\w\+]+)$', views.search, name='search2'),
 )
