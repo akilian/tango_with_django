@@ -330,3 +330,24 @@ def search(request, urlquery=None):
                 result_list = run_query(query)
 
     return render(request, 'rango/search.html', {'result_list': result_list})
+
+
+def track_url(request, page_id):
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
