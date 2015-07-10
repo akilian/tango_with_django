@@ -1,3 +1,5 @@
+{% load rango_extras %}
+
 <!DOCTYPE html>
 <html>
 	<head lang="en">
@@ -33,26 +35,31 @@
           			</button>
           			<a class="navbar-brand" href="/rango/">Rango</a>
         		</div>
-        	<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-				{% if user.is_authenticated %}
-					<li><a href="{% url 'restricted' %}">Restricted</a></li>
-					<li><a href="{% url 'add_category' %}">Add New Category</a></li>
-					<li><a href="{% url 'auth_password_change' %}">Change Password</a></li>
-					<li><a href="{% url 'auth_login' %}">Logout</a></li>
-				{% else %}
-					<li><a href="{% url 'registration_register' %}">Register Here</a></li>
-					<li><a href="{% url 'auth_login' %}">Login</a></li>
-				{% endif %}
-					<li><a href="{% url 'about' %}">About</a></li>
-	          </ul>
-			</div>
+	        	<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'restricted' %}">Restricted</a></li>
+						<li><a href="{% url 'add_category' %}">Add New Category</a></li>
+						<li><a href="{% url 'auth_password_change' %}">Change Password</a></li>
+						<li><a href="{% url 'auth_logout' %}">Logout</a></li>
+					{% else %}
+						<li><a href="{% url 'registration_register' %}">Register Here</a></li>
+						<li><a href="{% url 'auth_login' %}">Login</a></li>
+					{% endif %}
+						<li><a href="{% url 'about' %}">About</a></li>
+					</ul>
+					<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Rangearch...">
+					</form>
+				</div>
       		</div>
     	</nav>
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row-fluid">
 				<div class="col-sm-3 col-md-2 sidebar">
-				{% block side_block %}{% endblock %}
+				{% block side_block %}
+					{% get_category_list %}
+				{% endblock %}
 				</div>
         		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 					<div>

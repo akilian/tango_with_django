@@ -2,12 +2,25 @@
 
 {% load staticfiles %}
 
+{% block title %}About{% endblock%}
+
 {% block body_block %}
 
-	<h1>Rango says here is the about page!</h1>
-	<p>Rango wants a picture of Django uploaded from the static media files. now!</p><br />
-	<img src="{% static "images/djangorango.jpeg"  alt="Picture of Django" %}">
-	<h1>Your Visits: {{ visits }}</h1>
-	<p>he also wants a alterntive bold dictionary inputs in bold starting here: <strong>{{ twany }}</strong></p>
+	<div class="page-header">
+		<h1>About <small>Rango says here is the about page!</small></h1>
+	</div>
+	<div>
+		<p>Rango wants a picture of Django uploaded from the static media files. now!</p><br />
+		<div class="row">
+			<div class="col-xs-6 col-md-3">
+				<a href="" class="thumbnail">
+				<img src="{% static "images/djangorango.jpeg"  alt="Picture of Django" %}">
+				</a>
+			</div>
+		</div>
+		
+		<h1>Your Visits: {{ visits }}</h1>
+		<p>he also wants a alterntive bold dictionary inputs in bold starting here: <strong>{{ twany }}</strong></p>
+	</div>
 
 {% endblock %}
