@@ -93,8 +93,12 @@ def index(request):
 
     return response
 
+
+@login_required
 def category(request, category_name_slug):
     context_dict = {}
+    context_dict['query'] = None
+    context_dict['result_list'] = None
 
     try:
         # try to find a category name slug
@@ -125,6 +129,19 @@ def category(request, category_name_slug):
     except Category.DoesNotExist:
         # handle exception when there is no match of the category slug
         pass
+
+    # handle search result display on cat page
+    result_list = []
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+        if query:
+            # Run our Bing function to get the results list!
+            result_list = run_query(query)
+            context_dict['result_list'] = result_list
+            context_dict['query'] = query
+
+    if not context_dict['query']:
+        context_dict['query'] = category.name
 
     # Render response and return to the client
     return render(request, 'rango/category.html', context_dict)
@@ -333,19 +350,18 @@ def search(request, urlquery=None):
 
 
 def track_url(request):
-
+    page_id = None
+    url = '/rango/'
     if request.method == 'GET':
         if 'page_id' in request.GET:
             page_id = request.GET['page_id']
-            page = Page.objects.get(id=page_id)
-
-            # update pageviews
-            page.views = page.views + 1
-            page.save()
-
+            try:
+                page = Page.objects.get(id=page_id)
+                # update pageviews
+                page.views = page.views + 1
+                page.save()
+                url = page.url
+            except:
+                pass
             # redirect to page url
-            return HttpResponseRedirect(page.url)
-        else:
-            return HttpResponse("Url not found")
-    else:
-        return HttpResponseNotFound()
+    return HttpResponseRedirect(url)
