@@ -62,6 +62,17 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-list">
+						<li class="nav-header">find a category</li>
+						<form>
+						<label></label>
+						<li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+						</form>
+					</ul>
+					<div id="cats">
+					</div>
+				<hr/>
+
 				{% block side_block %}
 					{% get_category_list %}
 				{% endblock %}
@@ -84,6 +95,7 @@
 
 		<script src="{% static "js/jquery-1.11.3.js" %}"></script>
 		<script src="{% static "js/rango-jquery.js" %}"></script>
+		<script src="{% static "js/rango-ajax.js" %}"></script>
 	</body>
 
 </html>
