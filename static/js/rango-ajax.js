@@ -33,6 +33,5 @@ $('#addpage').click(function(){
 	});
 
 });
-
-});
 */
+});
