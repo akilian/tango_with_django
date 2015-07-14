@@ -10,11 +10,18 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+
+print "os.path.dirname(os.path.dirname(__file__))>>", os.path.dirname(os.path.dirname(__file__))
+print "os.path.dirname(__file__)>>", os.path.dirname(__file__)
+print "__file__ >>", __file__
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 STATIC_PATH = os.path.join(BASE_DIR, 'static')
 
+print os.path.join(BASE_DIR, 'templates')
 # Registrationn arameters
 
 REGISTRATION_OPEN = True# If True, users can register
@@ -26,8 +33,8 @@ LOGIN_URL = '/accounts/login/'
 
 
 # Printing paths for sanity's sake
-print "Templates:", TEMPLATE_PATH
-print "Static Files", STATIC_PATH
+# print "Templates:", TEMPLATE_PATH
+# print "Static Files", STATIC_PATH
 
 
 # Quick-start development settings - unsuitable for production
@@ -47,7 +54,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     TEMPLATE_PATH,
 )
-print "Template Dirs", TEMPLATE_DIRS
+# print "Template Dirs", TEMPLATE_DIRS
 ALLOWED_HOSTS = []
 
 # Application definition
