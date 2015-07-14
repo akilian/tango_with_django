@@ -40,3 +40,4 @@ Thumbs.db
 # Project Files #
 keys.py
 keys.pyc
+*.pyc
